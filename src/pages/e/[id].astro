@@ -15,16 +15,6 @@ const excuseRecord = id ? await getExcuseRecord(id) : null;
   <div class="max-w-2xl mx-auto space-y-8 sm:space-y-12">
     {excuseRecord ? (
       <>
-        <!-- Header Note -->
-        <div class="text-center space-y-1.5 sm:space-y-2">
-          <span class="text-[9px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#8A6635]">
-            Official Dispatch &bull; Record No. {id}
-          </span>
-          <h2 class="font-broadside-serif text-2xl sm:text-3xl text-[#1A1815]">
-            Registered Declaration of Indisposition
-          </h2>
-        </div>
-
         <!-- The Broadside Card -->
         <div class="border border-[#E7E0D3] bg-[#FDFBF7] p-5 sm:p-12 relative shadow-none">
           <!-- Broadside corner ornaments -->
