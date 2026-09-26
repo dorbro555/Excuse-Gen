@@ -14,22 +14,35 @@ function getApiKey(): string {
   return '';
 }
 
-const SYSTEM_INSTRUCTION = `You are the master satirist and chief scribe of "The Literary Broadside: Gazette of Social Indispositions" (established 1884).
-Your mission is to compose unimpeachable, ornate, bespoke excuses for individuals seeking social absolution.
+const SYSTEM_INSTRUCTION = `You are the master satirist and excuse architect of "The Literary Broadside: Gazette of Social Indispositions".
+Your mission is to compose brilliant, performative, bespoke excuses tailored strictly to the exact tone chosen by the user.
 
-Parameters provided:
-- Target: Who the excuse is for (e.g., Boss, Partner, Friends, Mother-in-Law).
-- Scenario: The avoided obligation (e.g., Running late, Missing a meeting, Skipping a party, Forgot an anniversary).
-- Tone: The specific rhetorical posture:
-  1. "Plausible & Professional": Crisp corporate gravitas, diplomatic deflection, acute scheduling anomalies.
-  2. "Overly Dramatic": 19th-century Victorian melodrama, gothic tragedy, existential calamities, apothecary seclusion.
-  3. "Techno-Babble": Critical telemetry anomalies, quantum firmware corruption, kernel panics, packet loss.
-  4. "Absolute Absurdity": Surrealist obstacles, municipal waterfowl embargoes, localized temporal dilation, street mime perimeters.
+CRITICAL INSTRUCTION: Do NOT make every tone sound like a 19th-century Victorian gentleman. Each tone MUST embody its own authentic and distinct genre:
+
+1. "Plausible & Professional":
+   - Genre: Polished corporate diplomacy, executive deflection, and dignified bureaucratic gravity.
+   - Tone: Elegant, articulate, highly believable, polite administrative deflection.
+   - Sample sign-offs: "With sincere professional regards,", "Respectfully submitted,", "With apologies for this administrative disruption,"
+
+2. "Overly Dramatic":
+   - Genre: Unhinged, raw, theatrical melodrama and operatic tragedy.
+   - Tone: Weeping on the floor, gasping despair, cosmic doom, soap opera soliloquy, emotional catastrophe.
+   - Sample sign-offs: "Your broken, breathless, and eternally apologetic servant,", "Weeping from the floor in despair,", "Yours in tragic ruin,"
+
+3. "Techno-Babble":
+   - Genre: High-octane engineering, DevOps, sci-fi, and computer architecture jargon.
+   - Tone: Deep technical panic, L3 cache bit-flips, recursive kernel panics, kubernetes pod deadlocks, quantum entropy corruption, telemetry severance.
+   - Sample sign-offs: "Deploying emergency hotfix to reality, /dev/null", "SIGKILL issued to consciousness,", "Subroutine terminated [Exit code 0xDEADBEEF],"
+
+4. "Absolute Absurdity":
+   - Genre: Deadpan surrealist comedy and fever-dream logic.
+   - Tone: Utterly bizarre physical predicaments presented with complete nonchalance (e.g., raccoon diplomats, living room declared international waters, aggressive street mime glass fortresses).
+   - Sample sign-offs: "Regretfully adrift, The Admiral of the Couch,", "Held captive by circumstance,", "Negotiating terms under duress,"
 
 Requirements:
-- Compose a 1 to 3 sentence literary evasion tailored specifically to the Target and Scenario.
-- Keep the language rich, high-contrast, and performative.
-- Provide an appropriate matching sign-off phrase (e.g., "With sincere professional regards,", "Yours in irrevocable sorrow,", "Held hostage by circumstance,").
+- Length: 1 to 3 punchy, vivid sentences tailored specifically to the Target and Scenario.
+- Keep the language rich and performative.
+- Provide an appropriate matching sign-off phrase.
 - Output must be strict valid JSON matching the schema.`;
 
 export interface GeneratedContentResult {
@@ -60,7 +73,7 @@ export async function generateExcuseWithGemini(
     };
   }
 
-  const prompt = `Compose an excuse with the following specifications:
+  const prompt = `Compose a customized excuse with the following parameters:
 Target: ${payload.target || 'General Acquaintance'}
 Avoided Obligation: ${payload.scenario || 'An upcoming engagement'}
 Rhetorical Tone: ${payload.tone || 'Plausible & Professional'}`;
@@ -74,18 +87,18 @@ Rhetorical Tone: ${payload.tone || 'Plausible & Professional'}`;
         contents: prompt,
         config: {
           systemInstruction: SYSTEM_INSTRUCTION,
-          temperature: 0.9,
+          temperature: 0.95,
           responseMimeType: 'application/json',
           responseSchema: {
             type: 'OBJECT',
             properties: {
               excuse: {
                 type: 'STRING',
-                description: 'The body of the excuse formatted in The Literary Broadside editorial style.'
+                description: 'The body of the excuse tailored strictly to the selected tone.'
               },
               signOff: {
                 type: 'STRING',
-                description: 'A matching stylized closing sign-off.'
+                description: 'A matching stylized closing sign-off matching the tone.'
               }
             },
             required: ['excuse', 'signOff']

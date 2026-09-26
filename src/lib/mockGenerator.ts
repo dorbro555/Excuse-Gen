@@ -10,11 +10,11 @@ const templatesByTone: Record<string, TemplatePool> = {
   "Plausible & Professional": {
     excuses: [
       (target, scenario) =>
-        `Due to an urgent, unforeseen conflict concerning ${scenario}, I am regrettably unable to fulfill my obligations to ${target} at this scheduled hour. I am actively resolving the matter with all due diligence and will provide an updated status report shortly.`,
+        `Due to an urgent, unforeseen operational conflict concerning ${scenario}, I am regrettably unable to fulfill my commitments to ${target} at this scheduled hour. I am actively resolving the matter with all due diligence and will provide an updated status report shortly.`,
       (target, scenario) =>
         `An acute logistical complication has arisen regarding ${scenario}. In order to prevent further scheduling discrepancies for ${target}, I must respectfully defer our engagement and handle this matter immediately.`,
       (target, scenario) =>
-        `Please accept this formal notification regarding ${scenario}. A time-sensitive contingency requiring my direct oversight has presented itself, precluding my participation alongside ${target} today.`
+        `Please accept this formal notification regarding ${scenario}. A time-sensitive contingency requiring my direct executive oversight has presented itself, precluding my participation alongside ${target} today.`
     ],
     signOffs: [
       "With sincere professional regards,",
@@ -26,58 +26,57 @@ const templatesByTone: Record<string, TemplatePool> = {
   "Overly Dramatic": {
     excuses: [
       (target, scenario) =>
-        `A catastrophe of unspeakable gravity has struck my morning regarding ${scenario}: the fabric of my composure has surrendered entirely to entropy, rendering my presence before ${target} a tragic and legal impossibility.`,
+        `The universe has conspired to deliver an emotional calamity regarding ${scenario}, and I am currently weeping onto the cold tiles of my hallway in total, inconsolable grief. I cannot in good conscience inflict the shattered wreckage of my composure upon ${target} today!`,
       (target, scenario) =>
-        `Fate, in her cruelest and most theatrical design, has decreed that ${scenario} shall demand my complete and utter surrender. I cast myself at the mercy of ${target} as the storm of misfortune gathers.`,
+        `Cruel, merciless fate has struck down my morning concerning ${scenario}, tearing my plans to shreds and leaving me gasping for air on my living room rug. I cast myself at the mercy of ${target} as the dark clouds of misfortune consume me!`,
       (target, scenario) =>
-        `A profound melancholia and tempestuous chaos has enveloped my affairs concerning ${scenario}. My apothecary and my soul demand total seclusion, lest ${target} be burdened by my ill-starred presence.`
+        `A disaster of Shakespearean proportions has completely obliterated my ability to deal with ${scenario}. My tears are flowing, my spirit is broken, and I must beg ${target} for forgiveness from the absolute bottom of my despairing heart!`
     ],
     signOffs: [
-      "With profound and tragic remorse,",
-      "From the depths of involuntary despair,",
-      "Yours in irrevocable sorrow,"
+      "Your broken, breathless, and eternally apologetic servant,",
+      "Weeping from the floor in despair,",
+      "Yours in tragic ruin,"
     ]
   },
 
   "Techno-Babble": {
     excuses: [
       (target, scenario) =>
-        `A critical desynchronization event occurred in my primary localized neural bus during execution of ${scenario}. To prevent total firmware corruption and cascading memory leaks affecting ${target}, all outbound routing is temporarily quarantined.`,
+        `A critical race condition triggered a cascading SIGSEGV in my local hypervisor while executing ${scenario}. All telemetry uplinks to ${target} have entered an unrecoverable deadlock pending a full memory dump.`,
       (target, scenario) =>
-        `An undocumented kernel panic during ${scenario} triggered an unhandled exception in my terrestrial navigation stack. System telemetry indicates an immediate hard reset is required before reconnecting with ${target}.`,
+        `An unexpected cosmic-ray bit-flip in my L3 cache corrupted the pod reconciliation loop for ${scenario}. To prevent unhandled microservice outages affecting ${target}, I have initiated an emergency failover routine.`,
       (target, scenario) =>
-        `My quantum key exchange regarding ${scenario} failed handshake protocols due to elevated atmospheric packet loss. Safety protocols require immediate isolation until handshake verification with ${target} can resume.`
+        `My primary neural bus suffered an unhandled kernel panic during ${scenario}, causing widespread network fragmentation. Protocol requires an immediate air-gapped isolation cycle before I can safely reconnect with ${target}.`
     ],
     signOffs: [
-      "Signal Terminated [Error 0xDEADBEEF],",
-      "Awaiting Core Re-initialization,",
-      "Subroutine paused pending memory dump,"
+      "Deploying emergency hotfix to reality, /dev/null",
+      "SIGKILL issued to process,",
+      "Subroutine terminated [Exit code 0xDEADBEEF],"
     ]
   },
 
   "Absolute Absurdity": {
     excuses: [
       (target, scenario) =>
-        `A council of municipal swans has established an unauthorized maritime sovereignty across my driveway during ${scenario}, and regional bylaws strictly forbid me from negotiating terms with waterfowl before dusk. I trust ${target} will understand the diplomatic delicacy.`,
+        `A coalition of rogue raccoon ambassadors has officially declared my living room international waters while I was preparing for ${scenario}. I am currently stranded on the couch negotiating a maritime ceasefire with their tiny leader using a leftover cinnamon roll, so I cannot reach ${target} today.`,
       (target, scenario) =>
-        `While preparing for ${scenario}, I became involuntarily entangled in an unlicensed localized time dilation pocket. From my perspective, four days have passed while ${target} was waiting forty minutes.`,
+        `While en route for ${scenario}, I became involuntarily trapped in a localized temporal anomaly where forty minutes outside felt like four agonizing weeks indoors. I trust ${target} will respect the cosmic delicacy of my situation.`,
       (target, scenario) =>
-        `A troupe of aggressive street mimes has encircled my vehicle regarding ${scenario} and constructed an impenetrable, invisible glass fortress around my perimeter. I cannot disappoint ${target} without breaching mime protocol.`
+        `A silent battalion of aggressive street mimes surrounded my front porch regarding ${scenario} and erected an invisible, soundproof plexiglass dome over my entire property. Reaching ${target} would directly violate inter-dimensional mime treaties.`
     ],
     signOffs: [
+      "Regretfully adrift, The Admiral of the Couch,",
       "Held hostage by circumstance,",
-      "Transmitted via carrier pigeon,",
-      "Under solemn oath of strange happenings,"
+      "Negotiating terms under duress,"
     ]
   }
 };
 
 /**
- * Simulates AI generation via OpenRouter with artificial delay for realistic feel
+ * Simulates AI generation via OpenRouter/fallback with artificial delay for realistic feel
  */
 export async function generateMockExcuse(payload: GenerateExcusePayload): Promise<ExcuseRecord> {
-  // Simulate AI delay between 500ms and 800ms
-  const simulatedDelay = Math.floor(Math.random() * 300) + 500;
+  const simulatedDelay = Math.floor(Math.random() * 300) + 400;
   await new Promise((resolve) => setTimeout(resolve, simulatedDelay));
 
   const target = payload.target?.trim() || "all concerned parties";
@@ -89,7 +88,7 @@ export async function generateMockExcuse(payload: GenerateExcusePayload): Promis
   const randomSignOff = pool.signOffs[Math.floor(Math.random() * pool.signOffs.length)];
 
   const excuse = randomExcuseFn(target, scenario);
-  const id = nanoid(8); // 8-character unique clean id
+  const id = nanoid(8);
 
   const dateIssued = new Intl.DateTimeFormat('en-US', {
     month: 'short',
