@@ -276,16 +276,22 @@ const defaultExcuse = {
           if (excuseText) excuseText.textContent = data.excuse;
           if (cardTarget) cardTarget.textContent = `For: ${data.target || target}`;
           if (cardTone) cardTone.textContent = `Tone: ${data.tone || tone}`;
+          const cardSignoff = document.getElementById('excuse-signoff');
+          if (cardSignoff && data.signOff) cardSignoff.textContent = data.signOff;
+          const cardDate = document.getElementById('card-date');
+          if (cardDate && data.dateIssued) cardDate.textContent = data.dateIssued;
           if (shareLink) {
             shareLink.textContent = `/e/${data.id}`;
             shareLink.href = `/e/${data.id}`;
           }
           showToast('Broadside composed.');
+          // Ensure newly generated excuse is immediately visible on mobile
+          document.getElementById('result-container')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } else {
-          showToast('Drafting complete (API route pending).');
+          showToast('Failed to compose broadside. Try again.');
         }
       } catch (err) {
-        showToast('Broadside rendered.');
+        showToast('Network error composing broadside.');
       } finally {
         if (buttonText) buttonText.textContent = "Compose Broadside";
         if (buttonSpinner) buttonSpinner.classList.add('hidden');

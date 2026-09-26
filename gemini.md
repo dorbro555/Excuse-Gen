@@ -32,5 +32,5 @@
 ## To-Do
 - [x] Create the astro site as specified in the guidelines (mobile-responsive).
 - [x] Setup git versioning for GitHub and Netlify deployment.
-- [ ] Implement a local mock data and API routes in Astro to simulate the behavior.
+- [x] Implement a local mock data and API routes in Astro to simulate the behavior.
 - [ ] Implement Netlify functions and Blobs to replace the mock data and API routes.
