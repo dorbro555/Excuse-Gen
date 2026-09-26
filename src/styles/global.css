@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-paper: #FDFBF7;
+    --color-paper-muted: #F5EFE4;
+    --color-paper-card: #FAF6ED;
+    --color-ink: #1A1815;
+    --color-ink-muted: #645E56;
+    --color-ink-faint: #9E978D;
+    --color-terracotta: #B84A28;
+    --color-terracotta-hover: #96391C;
+    --color-terracotta-bg: #F8EFE9;
+    --color-bronze: #8A6635;
+    --color-hairline: #E7E0D3;
+    --color-hairline-dark: #CEBEA4;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: #E8D3C4;
+    color: #1A1815;
+  }
+}
+
+@theme {
+  --font-serif: "Bodoni Moda", "Didot", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-paper: var(--color-paper);
+  --color-paper-muted: var(--color-paper-muted);
+  --color-paper-card: var(--color-paper-card);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-terracotta: var(--color-terracotta);
+  --color-terracotta-hover: var(--color-terracotta-hover);
+  --color-terracotta-bg: var(--color-terracotta-bg);
+  --color-bronze: var(--color-bronze);
+  --color-hairline: var(--color-hairline);
+  --color-hairline-dark: var(--color-hairline-dark);
+}
+
+/* Broadside styling utilities */
+.font-broadside-serif {
+  font-family: 'Bodoni Moda', 'Didot', Georgia, serif;
+}
+
+.font-broadside-sans {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.border-hairline {
+  border-color: #E7E0D3;
+}
+
+.border-hairline-dark {
+  border-color: #CEBEA4;
+}
+
+/* Double hairline rule characteristic of historical broadsides */
+.double-hairline-top {
+  border-top: 3px double #1A1815;
+}
+
+.double-hairline-bottom {
+  border-bottom: 3px double #1A1815;
+}
+
+.single-hairline-bottom {
+  border-bottom: 1px solid #E7E0D3;
+}
+
+.single-hairline-top {
+  border-top: 1px solid #E7E0D3;
+}

@@ -1,0 +1,295 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const defaultExcuse = {
+  id: "initial-dispatch",
+  target: "Boss",
+  scenario: "Missing a meeting",
+  tone: "Overly Dramatic",
+  excuse: "A catastrophe of unspeakable gravity has befell my morning routine: the fabric of my trousers has surrendered entirely to entropy, rendering my presence in polite company a legal impossibility.",
+  signOff: "With profound and tragic remorse,",
+  dateIssued: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+};
+---
+
+<Layout>
+  <div class="space-y-8 sm:space-y-12">
+    <!-- Introduction Section -->
+    <section class="text-center max-w-xl mx-auto space-y-2 sm:space-y-3">
+      <div class="inline-flex items-center gap-2 text-[9px] sm:text-xs font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-[#8A6635]">
+        <span>Section I</span>
+        <span>&bull;</span>
+        <span>Requisite Specifications</span>
+      </div>
+      <h2 class="font-broadside-serif text-2xl sm:text-3xl text-[#1A1815]">
+        Dictate the Terms of Your Absence
+      </h2>
+      <p class="text-xs sm:text-sm text-[#645E56] font-light leading-relaxed px-1">
+        Specify your recipient, describe the avoided engagement, and select your rhetorical posture to generate an unassailable broadside.
+      </p>
+    </section>
+
+    <!-- Form Section -->
+    <section class="max-w-xl mx-auto bg-[#FAF6ED] border border-[#E7E0D3] p-4 sm:p-8">
+      <form id="excuse-form" class="space-y-5 sm:space-y-6">
+        <!-- Target (Textbox with suggestion chips) -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-baseline">
+            <label for="target" class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1A1815]">
+              1. The Target
+            </label>
+            <span class="text-[10px] text-[#8A6635] italic">Who is this for?</span>
+          </div>
+          <input
+            type="text"
+            id="target"
+            name="target"
+            required
+            value="Boss"
+            placeholder="e.g., Boss, Partner, Friends, Mother-in-Law"
+            class="w-full bg-[#FDFBF7] border border-[#E7E0D3] text-[#1A1815] text-base sm:text-sm px-3.5 py-2.5 min-h-[44px] rounded-none focus:outline-none focus:border-[#B84A28] focus:ring-1 focus:ring-[#B84A28] transition-colors font-sans"
+          />
+          <!-- Quick touch suggestion chips for mobile -->
+          <div class="flex flex-wrap gap-1.5 pt-1 text-[10px]">
+            <span class="text-[#8A6635] uppercase tracking-wider self-center mr-0.5 text-[9px]">Suggestions:</span>
+            <button type="button" class="preset-chip px-2.5 py-1 bg-[#FDFBF7] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] border border-[#E7E0D3] text-[#1A1815] transition-colors cursor-pointer" data-for="target" data-value="Boss">Boss</button>
+            <button type="button" class="preset-chip px-2.5 py-1 bg-[#FDFBF7] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] border border-[#E7E0D3] text-[#1A1815] transition-colors cursor-pointer" data-for="target" data-value="Partner">Partner</button>
+            <button type="button" class="preset-chip px-2.5 py-1 bg-[#FDFBF7] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] border border-[#E7E0D3] text-[#1A1815] transition-colors cursor-pointer" data-for="target" data-value="Friends">Friends</button>
+            <button type="button" class="preset-chip px-2.5 py-1 bg-[#FDFBF7] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] border border-[#E7E0D3] text-[#1A1815] transition-colors cursor-pointer" data-for="target" data-value="Mother-in-Law">Mother-in-Law</button>
+          </div>
+        </div>
+
+        <!-- Scenario (Textbox with suggestion chips) -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-baseline">
+            <label for="scenario" class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1A1815]">
+              2. The Scenario
+            </label>
+            <span class="text-[10px] text-[#8A6635] italic">What are you getting out of?</span>
+          </div>
+          <input
+            type="text"
+            id="scenario"
+            name="scenario"
+            required
+            value="Missing a meeting"
+            placeholder="e.g., Running late, Missing a meeting, Skipping a party"
+            class="w-full bg-[#FDFBF7] border border-[#E7E0D3] text-[#1A1815] text-base sm:text-sm px-3.5 py-2.5 min-h-[44px] rounded-none focus:outline-none focus:border-[#B84A28] focus:ring-1 focus:ring-[#B84A28] transition-colors font-sans"
+          />
+          <!-- Quick touch suggestion chips for mobile -->
+          <div class="flex flex-wrap gap-1.5 pt-1 text-[10px]">
+            <span class="text-[#8A6635] uppercase tracking-wider self-center mr-0.5 text-[9px]">Suggestions:</span>
+            <button type="button" class="preset-chip px-2.5 py-1 bg-[#FDFBF7] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] border border-[#E7E0D3] text-[#1A1815] transition-colors cursor-pointer" data-for="scenario" data-value="Running late">Running late</button>
+            <button type="button" class="preset-chip px-2.5 py-1 bg-[#FDFBF7] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] border border-[#E7E0D3] text-[#1A1815] transition-colors cursor-pointer" data-for="scenario" data-value="Missing a meeting">Missing a meeting</button>
+            <button type="button" class="preset-chip px-2.5 py-1 bg-[#FDFBF7] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] border border-[#E7E0D3] text-[#1A1815] transition-colors cursor-pointer" data-for="scenario" data-value="Skipping a party">Skipping a party</button>
+            <button type="button" class="preset-chip px-2.5 py-1 bg-[#FDFBF7] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] border border-[#E7E0D3] text-[#1A1815] transition-colors cursor-pointer" data-for="scenario" data-value="Forgot an anniversary">Forgot anniversary</button>
+          </div>
+        </div>
+
+        <!-- Tone Dropdown -->
+        <div class="space-y-2">
+          <label for="tone" class="block text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1A1815]">
+            3. Tone of Indisposition
+          </label>
+          <div class="relative">
+            <select
+              id="tone"
+              name="tone"
+              class="w-full bg-[#FDFBF7] border border-[#E7E0D3] text-[#1A1815] text-base sm:text-sm px-3.5 py-2.5 min-h-[44px] rounded-none focus:outline-none focus:border-[#B84A28] focus:ring-1 focus:ring-[#B84A28] transition-colors appearance-none font-sans cursor-pointer"
+            >
+              <option value="Plausible & Professional">Plausible &amp; Professional</option>
+              <option value="Overly Dramatic" selected>Overly Dramatic</option>
+              <option value="Techno-Babble">Techno-Babble</option>
+              <option value="Absolute Absurdity">Absolute Absurdity</option>
+            </select>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-[#645E56]">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-3 text-center">
+          <button
+            type="submit"
+            id="generate-button"
+            class="w-full inline-flex items-center justify-center px-6 py-3.5 min-h-[48px] bg-[#B84A28] hover:bg-[#96391C] active:bg-[#802D13] text-[#FDFBF7] text-xs font-semibold uppercase tracking-[0.22em] transition-colors border border-[#96391C] cursor-pointer"
+          >
+            <span id="button-text">Compose Broadside</span>
+            <svg id="button-spinner" class="hidden animate-spin ml-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Display Card Section -->
+    <section id="result-container" class="max-w-2xl mx-auto pt-2 sm:pt-4">
+      <div class="border border-[#E7E0D3] bg-[#FDFBF7] p-5 sm:p-12 relative shadow-none">
+        <!-- Corner broadside markers -->
+        <div class="absolute top-2 left-2 text-[10px] text-[#CEBEA4] select-none font-serif">&plus;</div>
+        <div class="absolute top-2 right-2 text-[10px] text-[#CEBEA4] select-none font-serif">&plus;</div>
+        <div class="absolute bottom-2 left-2 text-[10px] text-[#CEBEA4] select-none font-serif">&plus;</div>
+        <div class="absolute bottom-2 right-2 text-[10px] text-[#CEBEA4] select-none font-serif">&plus;</div>
+
+        <!-- Broadside card header metadata -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] text-[#8A6635] pb-4 sm:pb-6 border-b border-[#E7E0D3] gap-1.5">
+          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+            <span id="card-target">For: {defaultExcuse.target}</span>
+            <span>&bull;</span>
+            <span id="card-tone">Tone: {defaultExcuse.tone}</span>
+          </div>
+          <span id="card-date" class="text-[#645E56]">{defaultExcuse.dateIssued}</span>
+        </div>
+
+        <!-- The Excuse Text (Bodoni Moda Serif, High Contrast) -->
+        <div class="py-8 sm:py-14 text-center">
+          <blockquote class="font-broadside-serif text-xl sm:text-3xl md:text-4xl leading-[1.35] text-[#1A1815] italic font-normal tracking-tight px-1">
+            &ldquo;<span id="excuse-text">{defaultExcuse.excuse}</span>&rdquo;
+          </blockquote>
+
+          <div class="mt-6 sm:mt-8 text-xs uppercase tracking-[0.18em] text-[#645E56]">
+            <p id="excuse-signoff">{defaultExcuse.signOff}</p>
+            <p class="font-medium text-[#1A1815] mt-1">The Management of My Own Discretion</p>
+          </div>
+        </div>
+
+        <!-- Hairline separator -->
+        <div class="border-t border-[#E7E0D3] pt-4 sm:pt-6 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4">
+          <!-- Shareable Link Display -->
+          <div class="flex items-center gap-2 text-xs text-[#645E56] justify-center sm:justify-start">
+            <span class="text-[10px] uppercase tracking-[0.15em] text-[#8A6635]">Record:</span>
+            <a
+              id="share-link"
+              href={`/e/${defaultExcuse.id}`}
+              class="font-mono text-xs text-[#B84A28] hover:underline underline-offset-4 truncate max-w-[220px]"
+            >
+              /e/{defaultExcuse.id}
+            </a>
+          </div>
+
+          <!-- Actions -->
+          <div class="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-3">
+            <button
+              id="copy-text-btn"
+              type="button"
+              class="px-3.5 py-2.5 min-h-[44px] border border-[#E7E0D3] bg-[#FAF6ED] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1A1815] transition-colors cursor-pointer text-center"
+            >
+              Copy Text
+            </button>
+            <button
+              id="copy-link-btn"
+              type="button"
+              class="px-3.5 py-2.5 min-h-[44px] border border-[#E7E0D3] bg-[#FAF6ED] hover:bg-[#F4EFE4] active:bg-[#E8D3C4] text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1A1815] transition-colors cursor-pointer text-center"
+            >
+              Copy Link
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast Notification (Fixed bottom on mobile) -->
+      <div id="toast" class="fixed bottom-5 left-4 right-4 sm:left-auto sm:right-6 bg-[#1A1815] text-[#FDFBF7] text-xs px-4 py-3 border border-[#8A6635] text-center sm:text-left opacity-0 pointer-events-none transition-opacity duration-300 z-50">
+        Copied to clipboard.
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Preset chip quick click
+    document.querySelectorAll('.preset-chip').forEach((button) => {
+      button.addEventListener('click', () => {
+        const fieldName = (button as HTMLElement).dataset.for;
+        const fieldValue = (button as HTMLElement).dataset.value;
+        if (fieldName && fieldValue) {
+          const input = document.getElementById(fieldName) as HTMLInputElement;
+          if (input) {
+            input.value = fieldValue;
+            input.focus();
+          }
+        }
+      });
+    });
+
+    // Client-side interactions
+    const form = document.getElementById('excuse-form') as HTMLFormElement;
+    const excuseText = document.getElementById('excuse-text');
+    const cardTarget = document.getElementById('card-target');
+    const cardTone = document.getElementById('card-tone');
+    const shareLink = document.getElementById('share-link') as HTMLAnchorElement;
+    const copyTextBtn = document.getElementById('copy-text-btn');
+    const copyLinkBtn = document.getElementById('copy-link-btn');
+    const buttonText = document.getElementById('button-text');
+    const buttonSpinner = document.getElementById('button-spinner');
+    const toast = document.getElementById('toast');
+
+    function showToast(message: string) {
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    copyTextBtn?.addEventListener('click', () => {
+      if (excuseText?.textContent) {
+        navigator.clipboard.writeText(excuseText.textContent.trim());
+        showToast('Excuse transcript copied.');
+      }
+    });
+
+    copyLinkBtn?.addEventListener('click', () => {
+      if (shareLink?.href) {
+        navigator.clipboard.writeText(shareLink.href);
+        showToast('Shareable link copied.');
+      }
+    });
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const target = formData.get('target') as string;
+      const scenario = formData.get('scenario') as string;
+      const tone = formData.get('tone') as string;
+
+      // Loading state
+      if (buttonText) buttonText.textContent = "Composing...";
+      if (buttonSpinner) buttonSpinner.classList.remove('hidden');
+
+      try {
+        const response = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ target, scenario, tone })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (excuseText) excuseText.textContent = data.excuse;
+          if (cardTarget) cardTarget.textContent = `For: ${data.target || target}`;
+          if (cardTone) cardTone.textContent = `Tone: ${data.tone || tone}`;
+          if (shareLink) {
+            shareLink.textContent = `/e/${data.id}`;
+            shareLink.href = `/e/${data.id}`;
+          }
+          showToast('Broadside composed.');
+        } else {
+          showToast('Drafting complete (API route pending).');
+        }
+      } catch (err) {
+        showToast('Broadside rendered.');
+      } finally {
+        if (buttonText) buttonText.textContent = "Compose Broadside";
+        if (buttonSpinner) buttonSpinner.classList.add('hidden');
+      }
+    });
+  </script>
+</Layout>
