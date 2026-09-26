@@ -1,11 +1,11 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getExcuse } from '../../lib/mockStore';
+import { getExcuseRecord } from '../../lib/storage';
 
 export const prerender = false;
 
 const { id } = Astro.params;
-const excuseRecord = id ? getExcuse(id) : null;
+const excuseRecord = id ? await getExcuseRecord(id) : null;
 ---
 
 <Layout

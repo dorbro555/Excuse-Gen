@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getExcuse } from '../../../lib/mockStore';
+import { getExcuseRecord } from '../../../lib/storage';
 
 export const prerender = false;
 
@@ -13,7 +13,7 @@ export const GET: APIRoute = async ({ params }) => {
     );
   }
 
-  const record = getExcuse(id);
+  const record = await getExcuseRecord(id);
 
   if (!record) {
     return new Response(

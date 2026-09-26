@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^8.2.6",
+    "@google/genai": "^2.24.0",
+    "@netlify/blobs": "^10.7.13",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.3.5",
     "nanoid": "^6.0.1",

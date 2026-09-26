@@ -1,7 +1,8 @@
 import type { APIRoute } from 'astro';
-import { generateMockExcuse } from '../../lib/mockGenerator';
-import { saveExcuse } from '../../lib/mockStore';
-import type { GenerateExcusePayload } from '../../lib/types';
+import { nanoid } from 'nanoid';
+import { generateExcuseWithGemini } from '../../lib/gemini';
+import { saveExcuseRecord } from '../../lib/storage';
+import type { ExcuseRecord, GenerateExcusePayload } from '../../lib/types';
 
 export const prerender = false;
 
@@ -20,11 +21,35 @@ export const POST: APIRoute = async ({ request }) => {
     const scenario = body.scenario?.trim() || 'Missing a meeting';
     const tone = body.tone?.trim() || 'Plausible & Professional';
 
-    // Generate excuse with simulated OpenRouter AI latency
-    const excuseRecord = await generateMockExcuse({ target, scenario, tone });
+    // 1. Generate unique URL-safe identifier
+    const id = nanoid(8);
 
-    // Save to local mock store
-    saveExcuse(excuseRecord);
+    // 2. Compose excuse via Google Gen AI SDK (Gemini)
+    const { excuse, signOff } = await generateExcuseWithGemini({
+      target,
+      scenario,
+      tone
+    });
+
+    const dateIssued = new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    }).format(new Date());
+
+    const excuseRecord: ExcuseRecord = {
+      id,
+      target,
+      scenario,
+      tone,
+      excuse,
+      signOff,
+      dateIssued,
+      createdAt: new Date().toISOString()
+    };
+
+    // 3. Persist to Netlify Blobs (or local fallback)
+    await saveExcuseRecord(excuseRecord);
 
     return new Response(
       JSON.stringify({

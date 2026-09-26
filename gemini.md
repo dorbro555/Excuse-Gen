@@ -4,7 +4,7 @@
 *   **Frontend:** Astro + Tailwind CSS.
 *   **Backend:** Netlify Functions (Astro API routes).
 *   **Storage:** Netlify Blobs (for saving and retrieving shareable excuses).
-*   **AI:** OpenRouter (currently stubbed out with hardcoded delays for MVP testing).
+*   **AI:** Google Gen AI SDK (Gemini 2.5 Flash with structured JSON output; resilient local fallback).
 
 ## Aesthetic & UI Guidelines: "The Literary Broadside"
 *   **Vibe:** Performative, editorial, high-end print magazine, literary quote card.
@@ -17,7 +17,7 @@
     *   Secondary (UI/Metadata): Clean, small geometric sans-serif (e.g., Inter, uppercase tracking).
 *   **Layout:** Minimalist. Heavy use of negative space. No drop shadows; use thin hairline borders (1px) if separation is needed.
 
-## Excuse Paremeters
+## Excuse Parameters
 *   The parameters will be passed to the AI api to craft the response. The target and scenario are textboxes, while the tone dropdown is a select input. 
 *   **Target**: Who is the excuse for? (Boss, Partner, Friends, Mother-in-Law)
 *   **Scenario**: What are you trying to get out of? (Running late, Missing a meeting, Skipping a party, Forgot an anniversary)
@@ -33,4 +33,4 @@
 - [x] Create the astro site as specified in the guidelines (mobile-responsive).
 - [x] Setup git versioning for GitHub and Netlify deployment.
 - [x] Implement a local mock data and API routes in Astro to simulate the behavior.
-- [ ] Implement Netlify functions and Blobs to replace the mock data and API routes.
+- [x] Implement Netlify functions and Blobs to replace the mock data and API routes.
